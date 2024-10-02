@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Resource Management Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <h3>Dashboard</h3>
+        </div>
+        <a href="#past-records">Past Records</a>
+        <a href="#existing-reservoirs">Existing Reservoirs</a>
+        <a href="#future-water-req">Future Water Requirements</a>
+        <a href="#scenario-planning">Scenario Planning</a>
+    </div>
+
+    <!-- Page Content -->
+    <div class="content">
+        <h2>Water Resource Management Dashboard</h2>
+        <p>Welcome to your dashboard. Navigate using the sidebar.</p>
+
+        <!-- Past Records Section -->
+        <div id="past-records">
+            <h3>Past Records</h3>
+            <div class="table-container">
+                <div class="geo-data">
+                    <table class="geo-table">
+                        <tr><td><strong>District</strong></td><td>MADURAI</td></tr>
+                        <tr><td><strong>State</strong></td><td>TAMIL NADU</td></tr>
+                        <tr><td><strong>Geographic Area</strong></td><td>384,680 hectares</td></tr>
+                        <tr><td><strong>Latitude</strong></td><td>9.939093</td></tr>
+                        <tr><td><strong>Longitude</strong></td><td>78.121719</td></tr>
+                        <tr><td><strong>Annual Average Soil Moisture</strong></td><td>22.62%</td></tr>
+                        <tr><td><strong>Annual Average Evapotranspiration</strong></td><td>2.03 mm</td></tr>
+                    </table>
+                </div>
+
+                <div class="pop-data-with-map">
+                    <div class="map-container">
+                        <img src="madurai-map.png" alt="Madurai Map" class="madurai-map">
+                    </div>
+
+                    <div class="pop-data">
+                        <table class="pop-table">
+                            <tr><td><strong>Male</strong></td><td>2,264,727</td></tr>
+                            <tr><td><strong>Female</strong></td><td>2,228,061</td></tr>
+                            <tr><td><strong>Total Population</strong></td><td>4,492,788</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="charts-container">
+                <div class="rainfall-data">
+                    <h3>Rainfall Data (2010-2020) (mm)</h3>
+                    <canvas id="rainfallChart"></canvas>
+                </div>
+                <div class="groundwater-data">
+                    <h3>Groundwater Level Data (2010-2019) (mm)</h3>
+                    <canvas id="groundwaterChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!-- Soil Moisture Data Section -->
+         <div class="charts-container">
+        <div id="soil-moisture">
+            <h3>Soil Moisture Data</h3>
+            <canvas id="soilMoistureChart"></canvas>
+        </div>
+        
+
+        <!-- Evapotranspiration Data Section -->
+        <div id="evapotranspiration">
+            <h3>Evapotranspiration Data</h3>
+            <canvas id="evapotranspirationChart"  width="800" height="600"></canvas>
+        </div>
+    </div>
+    <div class="charts-container">
+        <!-- Irrigation Data Section -->
+        <div id="irrigation">
+            <h3>Irrigation Data</h3>
+            <canvas id="irrigationChart"  width="800" height="600"></canvas>
+        </div>
+
+        <!-- Industry Water Usage Section -->
+        <div id="industry-water-usage">
+            <h3>Industry Water Usage</h3>
+            <canvas id="industryWaterUsageChart"  width="800" height="600"></canvas>
+        </div>
+    </div>
+        <!-- Livestock Data Section -->
+        <div id="livestock">
+            <h3>Livestock Data</h3>
+            <div class="livestock-charts-container">
+                <div class="livestock-population">
+                    <h3>Livestock Population</h3>
+                    <canvas id="livestockPieChart"></canvas>
+                </div>
+                <div class="water-usage">
+                    <h3>Water Usage by Livestock</h3>
+                    <canvas id="waterUsageLivestockChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Existing Reservoirs Section -->
+        <div id="existing-reservoirs">
+            <h3>Existing Reservoirs</h3>
+            <p>Data about current reservoirs and their storage capabilities...</p>
+            <div class="container">
+
+                <!-- Left Table Container -->
+                <div class="table-container">
+                    <h2>Irrigation by Different Sources</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sl. No.</th>
+                                <th>Particulars</th>
+                                <th>Numbers</th>
+                                <th>Area (in ha)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Canals</td>
+                                <td>Gross: 80</td>
+                                <td>Gross: 18998</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 17828</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Tanks</td>
+                                <td>Gross: 2289</td>
+                                <td>Gross: 18500</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 17837</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Tube wells / Bore wells</td>
+                                <td>Gross: 697</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 662</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Open wells</td>
+                                <td>Gross: 42469</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 38949</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Supplementary wells</td>
+                                <td>Gross: 797</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 797</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Other Sources</td>
+                                <td>Gross: 0</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 0</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <h2>Sources of Irrigation (in hectare)</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sl. No.</th>
+                                <th>Particulars</th>
+                                <th>2012-13</th>
+                                <th>2013-14</th>
+                                <th>2014-15</th>
+                                <th>Average</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Canals</td>
+                                <td>Gross: 5804</td>
+                                <td>17114</td>
+                                <td>18998</td>
+                                <td>13972.00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 5502</td>
+                                <td>16155</td>
+                                <td>17828</td>
+                                <td>13161.67</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Tanks</td>
+                                <td>Gross: 7163</td>
+                                <td>12895</td>
+                                <td>18500</td>
+                                <td>12852.67</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 7157</td>
+                                <td>12656</td>
+                                <td>17837</td>
+                                <td>12550.00</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Tube wells / Bore wells</td>
+                                <td>Gross: 444</td>
+                                <td>294</td>
+                                <td>697</td>
+                                <td>478.33</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 444</td>
+                                <td>294</td>
+                                <td>662</td>
+                                <td>466.67</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Open wells</td>
+                                <td>Gross: 32526</td>
+                                <td>34648</td>
+                                <td>42469</td>
+                                <td>36547.67</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 32121</td>
+                                <td>33476</td>
+                                <td>38949</td>
+                                <td>34848.67</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Supplementary wells</td>
+                                <td>Gross: 780</td>
+                                <td>796</td>
+                                <td>797</td>
+                                <td>791.00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 780</td>
+                                <td>796</td>
+                                <td>797</td>
+                                <td>791.00</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Other Sources</td>
+                                <td>Gross: 0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0.00</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Net: 0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <h2>Details of Dams in Madurai District</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sl. No.</th>
+                                <th>Name</th>
+                                <th>Water spread area (ha)</th>
+                                <th>Capacity (MCFT)</th>
+                                <th>Potential area for irrigation (ha)</th>
+                                <th>Present status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Sivaganga Dam</td>
+                                <td>33.12</td>
+                                <td>41.46</td>
+                                <td>317.38</td>
+                                <td>596.96</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Vaigai Dam</td>
+                                <td>24.20</td>
+                                <td>21.64</td>
+                                <td>172.60</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Peria Aruvi Dam</td>
+                                <td>16.00</td>
+                                <td>12.46</td>
+                                <td>24.00</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Sathiyar Dam</td>
+                                <td>9.24</td>
+                                <td>8.84</td>
+                                <td>0.63</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+        
+                    <p><em>Source: Season and Crop Report, 2014-15</em></p>
+                    <p><em>Source: Assistant Engineer, P.W.D., Madurai & Melur.</em></p>
+                </div>
+        
+                <!-- Right Chart Container -->
+                <div class="charts-container">
+                    <canvas id="irrigationChart1" width="400" height="200"></canvas>
+                    <canvas id="sourcesChart" width="400" height="200"></canvas>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Future Water Requirements Section -->
+        <div id="future-water-req">
+            <h3>Future Water Requirements</h3>
+            <p>Predicted future water requirements...</p>
+            <div class="charts-container">
+               <div><h3>Water required for Irrigation</h3>
+            <canvas id="agricultureChart"></canvas></div> 
+       
+
+<!-- Pie Chart for Water Required for Industries -->
+                <div>
+    <h3>Water required for Industries</h3>
+    <canvas id="industryChart"></canvas></div>
+</div>
+
+
+<h1>Water Requirements for Taluks and Blocks in Madurai</h1>
+
+<!-- Progress Bars for Water Requirements -->
+<div id="progress-bars"></div>
+        </div>
+
+        <!-- Scenario Planning Section -->
+        <div id="scenario-planning">
+            <h3>Scenario Planning</h3>
+            <p>Plan for extreme weather events...</p>
+            <h1>Scenario Planning for Drought and Heavy Rainfall</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Scenario</th>
+            <th>Possibility (%)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Drought</td>
+            <td>
+                <div class="progress-container">
+                    <div id="drought-progress" class="progress" style="background-color: #ff9800;">0%</div>
+                </div>
+                <input type="range" id="drought-range" class="range-input" min="0" max="100" value="0">
+            </td>
+        </tr>
+        <tr>
+            <td>Heavy Rainfall</td>
+            <td>
+                <div class="progress-container">
+                    <div id="rainfall-progress" class="progress" style="background-color: #2196f3;">0%</div>
+                </div>
+                <input type="range" id="rainfall-range" class="range-input" min="0" max="100" value="0">
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="charts-container">
+    <div>
+<h2>Impact on Departments</h2>
+<div id="chartContainer">
+    <canvas id="impactChart" width="400" height="200"></canvas>
+</div>
+</div>
+<div>
+<h2>Impact on Water Storage Spaces</h2>
+<div id="storageChartContainer">
+    <canvas id="storageChart" width="400" height="200"></canvas>
+</div>
+</div>
+</div>
+        </div>
+
+        
+    </div>
+    <footer style="background-color: #f2f2f2; text-align: center; padding: 10px; position: relative; bottom: 0; width: 100%;">
+        <p style="margin: 0; color: #555;">&copy; 2024 AgroNex. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- External JS -->
+    <script src="script.js"></script>
+</body>
+</html>
